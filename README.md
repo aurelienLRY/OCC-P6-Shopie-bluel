@@ -1,3 +1,4 @@
+![repository-Projet6](https://github.com/aurelienLRY/OCC-P6-Shopie-bluel/assets/83220559/f9fbeb00-a2bb-4087-864c-d9e2fa009597)
 
 # Projet 6 - Créez une page web dynamique avec JavaScript
 
