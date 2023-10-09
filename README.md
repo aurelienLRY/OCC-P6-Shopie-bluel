@@ -32,7 +32,7 @@ Le site web :
 Le projet prévois 60 heures et se déroulera du Mardi 9 octobre 2023 au mercredi 9 novembre 2023 , soit sur une période de 1 mois.
 
 ### Temps de développement actuelle : 
-[![wakatime](https://wakatime.com/badge/user/dfdaf0d3-5ae8-4997-92c1-563d24f5d7d4/project/683da225-7b07-445c-b7ac-a5c90e219479.svg)](https://wakatime.com/badge/user/dfdaf0d3-5ae8-4997-92c1-563d24f5d7d4/project/683da225-7b07-445c-b7ac-a5c90e219479)
+[![wakatime](https://wakatime.com/badge/user/dfdaf0d3-5ae8-4997-92c1-563d24f5d7d4/project/018b002e-00bc-40b7-958b-dd71736a9180.svg)](https://wakatime.com/badge/user/dfdaf0d3-5ae8-4997-92c1-563d24f5d7d4/project/018b002e-00bc-40b7-958b-dd71736a9180)
 
 ## Soutenance 
 ### Présentation des livrables (15 minutes) 
