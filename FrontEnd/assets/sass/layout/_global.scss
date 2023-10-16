@@ -1,22 +1,24 @@
-@use '../abstracts/variables' as var ; 
-html{
-  background-color : var.$bg-color ; 
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+
+html {
+  background-color: var.$bg-color;
   scroll-behavior: smooth;
+  z-index: 0;
 }
 
 body {
- display: flex;
- flex-direction: column;
- align-items: center;
-	font-family: "Work Sans";
-	font-size: 14px;
-	
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var.$text-color;
+  @include mix.typography;
 }
 
-main{
+main {
   width: 100%;
-   max-width: 1140px;
-   margin: auto;
+  max-width: 1140px;
+  margin: auto;
 }
 
 section {

@@ -55,14 +55,20 @@ table {
 html {
   background-color: #FFFEF8;
   scroll-behavior: smooth;
+  z-index: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Work Sans";
+  color: #3D3D3D;
+  color: #3D3D3D;
+  font-family: Work Sans;
   font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 main {
@@ -104,10 +110,6 @@ header nav .nav_link {
   font-size: 1.2em;
   color: #000;
   text-align: center;
-  font-family: Work Sans;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 header nav .nav_link:hover {
   text-decoration: none;
@@ -150,6 +152,44 @@ footer nav ul {
   color: black;
 }
 
+.btn, .btn-outline {
+  height: 37px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 60px;
+  text-align: center;
+  font-family: Syne;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.btn-outline {
+  border: 1px solid #1d6154;
+  background-color: white;
+  color: #1d6154;
+}
+.btn-outline:hover {
+  color: white;
+  background: #1d6154;
+}
+.btn-outline-active {
+  color: white;
+  background: #1d6154;
+}
+
+.btn-lg {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+}
+
 #login {
   width: 50%;
   height: 60vh;
@@ -164,7 +204,7 @@ footer nav ul {
 }
 #login form {
   text-align: left;
-  margin-top: 30px;
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
 }
@@ -178,18 +218,13 @@ footer nav ul {
   margin: 2em 0 1em 0;
 }
 #login a {
-  color: #3d3d3d;
+  color: #3D3D3D;
 }
 
-input[type=submit] {
-  font-family: "Syne";
-  font-weight: 700;
-  color: white;
-  background-color: #1d6154;
-  margin: 2em auto;
-  width: 180px;
-  text-align: center;
-  border-radius: 60px;
+#error-message {
+  padding-top: 2em;
+  color: rgb(202, 33, 33);
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=login.css.map */

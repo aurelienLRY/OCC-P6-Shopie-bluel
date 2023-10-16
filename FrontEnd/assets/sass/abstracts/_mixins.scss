@@ -1,0 +1,11 @@
+@use'variables' as var;
+
+@mixin typography {
+    color:var.$text-color;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}

@@ -1,0 +1,42 @@
+@use'../abstracts/variables' as var;
+.btn {
+  height: 37px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 60px;
+  text-align: center;
+  font-family: Syne;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.btn-outline {
+  @extend .btn;
+  border: 1px solid var.$secondary-color;
+  background-color: white;
+
+  color: var.$secondary-color;
+
+  &:hover {
+    color: white;
+    background: var.$secondary-color;
+  }
+  &-active {
+    color: white;
+    background: var.$secondary-color;
+  }
+}
+
+
+.btn-lg{
+    font-family: "Syne";
+    font-weight: 700;
+    color: white;
+    background-color:var.$secondary-color;
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+}

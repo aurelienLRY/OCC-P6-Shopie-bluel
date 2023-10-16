@@ -4,7 +4,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
-  a{
+  a {
     text-decoration: none;
   }
 
@@ -12,7 +12,7 @@ header {
     display: flex;
     align-items: center;
     list-style-type: none;
-    gap : 1em;
+    gap: 1em;
 
     .nav_link {
       text-decoration: none;
@@ -20,18 +20,14 @@ header {
       font-size: 1.2em;
       color: #000;
       text-align: center;
-      font-family: Work Sans;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
 
-      &:hover{  
+      &:hover {
         text-decoration: none;
         color: #b1663c;
       }
-        &--active{
-    font-weight: 600;
-       }
+      &--active {
+        font-weight: 600;
+      }
     }
   }
 }

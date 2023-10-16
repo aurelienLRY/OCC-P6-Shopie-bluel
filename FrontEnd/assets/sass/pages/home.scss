@@ -1,6 +1,9 @@
-@use '../abstracts/variables' as var ; 
-@use '../base/reset';
-@use'../layout';
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as m;
+@use "../base/reset";
+@use "../layout";
+@use "../components";
+
 
 #introduction {
   display: flex;
@@ -28,6 +31,16 @@
   h2 {
     text-align: center;
     margin-bottom: 1em;
+    position: relative;
+  }
+
+  .portfolio_btn-editmode {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 3em;
+    @include m.typography;
+    cursor: pointer;
   }
 
   .gallery {
@@ -51,32 +64,6 @@
     gap: 10px;
     margin-bottom: 45px;
     margin-top: 45px;
-
-    .btn-filter {
-      height: 37px;
-      padding-left: 18px;
-      padding-right: 18px;
-      border-radius: 60px;
-      border: 1px solid var.$secondary-color;
-      background-color: white;
-
-      color: var.$secondary-color;
-      text-align: center;
-      font-family: Syne;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-
-      &:hover {
-        color: white;
-        background: var.$secondary-color;
-      }
-      &-active {
-        color: white;
-        background: var.$secondary-color;
-      }
-    }
   }
 }
 
