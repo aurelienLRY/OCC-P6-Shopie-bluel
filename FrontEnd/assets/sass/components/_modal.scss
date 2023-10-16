@@ -1,0 +1,108 @@
+@use "btn";
+
+.modal {
+  //comportement
+  position: fixed;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //style
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+
+  &-wrapper {
+    max-width: 630px;
+    max-height: 688px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+
+    &_header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &_nav {
+      box-sizing: border-box;
+      margin: 26px 30px 0px 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 24px;
+      &--space-between{
+        justify-content: space-between;
+      }
+    }
+
+    &_title {
+      text-align: center;
+      color: #000;
+      font-size: 26px;
+    }
+
+    .modal-wrapper_body {
+      box-sizing: border-box;
+      display: flex;
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+    .gallery {
+      width: 100%;
+      display : grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-column-gap: 8px;
+      grid-row-gap: 8px;
+
+      &_figure {
+        position: relative;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+        i {
+          width: 17px;
+          height:17px;
+          font-size: 9px;
+          position: absolute;
+          top: 6px;
+          right: 5px;
+          color: white;
+          background-color: black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 2px;
+        }
+      }
+    }
+    &_footer {
+      margin-left: 15%;
+      margin-right: 15%;
+         border-top: 1px solid #B3B3B3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      button {
+     box-sizing: border-box;
+        @extend .btn-lg;
+        padding: 0.5em 1.5em 0.5em 1.5em;
+        text-align: center;
+      }
+    }
+  }
+}
+@keyframes modal {
+}
