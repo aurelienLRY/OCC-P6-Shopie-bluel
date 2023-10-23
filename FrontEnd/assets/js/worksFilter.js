@@ -29,7 +29,8 @@ export async function addWorksToDom(selectDocu, selecteur){
     let data = await getWorksFromServer();
     data.forEach((work) => {
       // Création des éléments du DOM
-      let figure = document.createElement("figure");
+      let figure = document.createElement("figure"); 
+      figure.id = `figure-${work.id}`;
       figure.dataset.categoryId = work.categoryId;
       figure.style.display = "block";
       let img = document.createElement("img");

@@ -25,7 +25,7 @@ export function editMode() {
   editModeSidebar();// insertion du sidebar edit_mode
 
   /**
-   * Création du Bouton Modifié
+   * Création du Bouton Modifier
    */
   const projet = document.getElementById("portfolio");
   // Trouvez le premier élément <h2> dans la section #portfolio

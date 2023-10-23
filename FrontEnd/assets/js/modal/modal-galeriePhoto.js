@@ -30,8 +30,10 @@ async function deletework(id) {
         console.error(`Erreur : ${response.status} - ${response.statusText}`);
         return null;
       }
-      if (response.status === 200) {
-        deleteWork.remove(); // on supprime la balise du DOM
+      if (response.status === 200 || response.status === 204) {
+        deleteWork.remove();
+        const workFromDom = document.querySelector(`figure#figure-${id}`);
+        workFromDom.remove(); // 
       }
     });
   } else {

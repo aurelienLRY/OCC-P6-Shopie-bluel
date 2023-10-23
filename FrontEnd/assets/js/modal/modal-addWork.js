@@ -4,16 +4,21 @@ import { getUserDataFromCookies } from "../auth/auth.js";
 import { Modal } from "./class-modal.js";
 import { host } from "../config.js";
 
+/**
+ * Génére le modal à partir de la classe Modal
+ * @return modal add Work
+ */
 export async function modalAddWork() {
-  const modal = new Modal("modal-addwork");
-  const categories = await getCategoriesFromServer();
-  //élément du header
-  modal.headerTitle.textContent = "Ajout photo";
+  const modal = new Modal("modal-addwork"); // généré le modal à partir de la classe modal
+  const categories = await getCategoriesFromServer(); // on récupère les categories via l'api pour l'input select
+
+  modal.headerTitle.textContent = "Ajout photo"; //Titre du modal
+
   modal.previousIcon.addEventListener("click", async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    modal.closeModal();
-    await modalGalleryPhoto();
+    modal.closeModal(); //ferme le modal actuel
+    await modalGalleryPhoto(); // Génère le modal précèdent
   });
 
   // élément du body
@@ -51,7 +56,7 @@ export async function modalAddWork() {
   const span = document.createElement("span");
   span.textContent = "jpg, png : 4mo max";
 
-  // Ajoute les éléments créés à l'élément "dragAndDrop"$
+  // Ajoute les éléments créés à l'élément "dragAndDrop"
   dragAndDrop.appendChild(icon);
   dragAndDrop.appendChild(label);
   dragAndDrop.appendChild(inputFile);
@@ -99,36 +104,43 @@ export async function modalAddWork() {
   modal.body.appendChild(dragAndDrop);
   modal.body.appendChild(addWorkTitle);
   modal.body.appendChild(addWorkCategory);
+
   //élément du footer
   modal.btn.textContent = "Valider";
   modal.btn.disabled = true;
   modal.btn.addEventListener("click", async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    await createWork();
+    await createWork(modal);
   });
 
   return modal;
 }
+
 /**
  *  Envoi les données à l'api
  */
-export async function createWork() {
-  const userData = getUserDataFromCookies();
-  const title = document.getElementById("workTitle").value;
-  const workCategory = document.getElementById("workCategory").value;
-  const fileInput = document.getElementById("fileInput");
-  const divErr = document.getElementById("messErr");
-  const formData = new FormData();
+export async function createWork(modal) {
+  const userData = getUserDataFromCookies(); // récupère les données de l'utilisateur dans les cookies
+  const title = document.getElementById("workTitle").value; // récupère le titre du projet via l'input
+  const workCategory = document.getElementById("workCategory").value; // récupère la catégorie du projet via l'input
+  const fileInput = document.getElementById("fileInput"); // récupère l'image du projet via l'input '
+  const divErr = document.getElementById("messErr"); // sélectionne l'élément "divErr"'
+  const formData = new FormData(); // création d'un objet FormData'
+
+   // Vérification des données 
   if (workCategory === "firstOption") {
     divErr.textContent = "Veuillez sélectionner une catégorie.";
+    return;
+  } else if (title === "") {
+    divErr.textContent = "Veuillez renseigner un titre.";
     return;
   } else {
     formData.append("category", workCategory);
     formData.append("title", title);
     formData.append("image", fileInput.files[0]);
   }
-
+ // vérification de l'intégration des données à l'objet formData
   if (
     formData.has("image") &&
     formData.has("title") &&
@@ -146,10 +158,9 @@ export async function createWork() {
 
       if (response.status === 201) {
         // La création a réussi
-    
-        console.log("Work créé avec succès");
-
-
+        const data = await response.json();
+        addWorkToDom(data);
+        modal.closeModal();
       } else if (response.status === 401) {
         divErr.textContent = "Vous ne disposez pas des droits nécessaires.";
         console.error("Erreur d'autorisation :", response.status);
@@ -164,7 +175,6 @@ export async function createWork() {
     }
   } else {
     divErr.textContent = "Veuillez renseigner tous les champs.";
-    console.log("Certaines données sont manquantes.");
     return;
   }
 }
@@ -190,7 +200,7 @@ function isImageFile(file) {
  *  Vérifie si les inputs sont renseignés & active le btn valide
  */
 export async function checkInputs() {
-  // Sélection des éléments HTML
+  // Sélection des éléments du DOM
   const title = document.getElementById("workTitle");
   const dragandDrop = document.getElementById("dragandDrop");
   const workCategory = document.getElementById("workCategory");
@@ -296,4 +306,23 @@ export function dragAndDrop() {
       handleFile(file);
     }
   });
+}
+/**
+ * Insère dans le dom le projet avec la réponse de l'api
+ * @param {object} work
+ */
+function addWorkToDom(work) {
+  const gallery = document.querySelector(".gallery");
+  let figure = document.createElement("figure");
+  figure.id = `figure-${work.id}`;
+  figure.dataset.categoryId = work.categoryId;
+  figure.style.display = "block";
+  let img = document.createElement("img");
+  img.src = work.imageUrl;
+  img.alt = work.title;
+  let figcaption = document.createElement("figcaption");
+  figcaption.textContent = work.title;
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+  gallery.appendChild(figure);
 }

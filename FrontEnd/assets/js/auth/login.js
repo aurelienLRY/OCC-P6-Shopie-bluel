@@ -47,9 +47,9 @@ document.getElementById("login").addEventListener("submit", function (e) {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 401) {
-        throw new Error("Identifiants incorrects.");
+        throw new Error("Erreur dans l’identifiant ou le mot de passe");
       } else if (response.status === 404) {
-        throw new Error("Utilisateur non trouvé.");
+        throw new Error("Erreur dans l’identifiant ou le mot de passe");
       } else {
         throw new Error("Erreur inattendue.");
       }
