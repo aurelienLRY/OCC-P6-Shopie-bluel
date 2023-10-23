@@ -4,7 +4,6 @@ import { getUserDataFromCookies } from "../auth/auth.js";
 import { Modal } from "./class-modal.js";
 import { host } from "../config.js";
 
-
 export async function modalAddWork() {
   const modal = new Modal("modal-addwork");
   const categories = await getCategoriesFromServer();
@@ -84,6 +83,7 @@ export async function modalAddWork() {
   categorySelect.id = "workCategory";
 
   const firstOptionElement = document.createElement("option");
+  firstOptionElement.value = "firstOption";
   categorySelect.appendChild(firstOptionElement);
   // Parcourir le tableau categories pour créer des options
   categories.forEach((category) => {
@@ -105,7 +105,7 @@ export async function modalAddWork() {
   modal.btn.addEventListener("click", async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    createWork();
+    await createWork();
   });
 
   return modal;
@@ -118,18 +118,22 @@ export async function createWork() {
   const title = document.getElementById("workTitle").value;
   const workCategory = document.getElementById("workCategory").value;
   const fileInput = document.getElementById("fileInput");
-
+  const divErr = document.getElementById("messErr");
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("category", workCategory);
-  formData.append("image", fileInput.files[0]);
+  if (workCategory === "firstOption") {
+    divErr.textContent = "Veuillez sélectionner une catégorie.";
+    return;
+  } else {
+    formData.append("category", workCategory);
+    formData.append("title", title);
+    formData.append("image", fileInput.files[0]);
+  }
 
   if (
     formData.has("image") &&
     formData.has("title") &&
     formData.has("category")
   ) {
-
     try {
       const response = await fetch(`${host}/api/works`, {
         method: "POST",
@@ -142,21 +146,26 @@ export async function createWork() {
 
       if (response.status === 201) {
         // La création a réussi
-        const data = await response.json();
-        console.log("Work créé avec succès :", data);
+    
+        console.log("Work créé avec succès");
+
+
       } else if (response.status === 401) {
-        // Non autorisé, assurez-vous que le token est correct
+        divErr.textContent = "Vous ne disposez pas des droits nécessaires.";
         console.error("Erreur d'autorisation :", response.status);
+        return;
       } else {
-        // Autre erreur
+        divErr.textContent = "Erreur inattendue";
         console.error("Erreur inattendue :", response.status);
+        return;
       }
     } catch (error) {
       console.error("Erreur de réseau :", error);
     }
   } else {
-    // Au moins une donnée est manquante
+    divErr.textContent = "Veuillez renseigner tous les champs.";
     console.log("Certaines données sont manquantes.");
+    return;
   }
 }
 
@@ -186,6 +195,7 @@ export async function checkInputs() {
   const dragandDrop = document.getElementById("dragandDrop");
   const workCategory = document.getElementById("workCategory");
   const footerBtn = document.querySelector(".modal-wrapper_footer button");
+  const divErr = document.getElementById("messErr");
 
   // Initialisation de la variable "drag" pour le drag-and-drop
   let drag = false;
@@ -196,6 +206,7 @@ export async function checkInputs() {
   // Fonction pour vérifier les champs et activer/désactiver le bouton
   function checkFields() {
     if (title.value && workCategory.value && drag) {
+      divErr.textContent = ""; // Effacez les messages d'erreur s'il y en avait
       footerBtn.disabled = false;
     }
   }
@@ -213,7 +224,6 @@ export async function checkInputs() {
   // Ajout des écouteurs d'événements "change" pour les champs
   for (const checkInput of check) {
     checkInput.addEventListener("change", () => {
-      console.log(`input ${checkInput.id} change. valeur: ${checkInput.value}`);
       checkDragAndDrop();
     });
   }
@@ -273,8 +283,8 @@ export function dragAndDrop() {
     mesErr.innerHTML = "";
     dragAndDrop.classList.remove("dragover");
     const files = e.dataTransfer.files;
-    if (files.length > 0) { 
-      fileInput.files = files
+    if (files.length > 0) {
+      fileInput.files = files;
       handleFile(files[0]);
     }
   });

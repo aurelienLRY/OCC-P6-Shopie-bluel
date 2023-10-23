@@ -2,7 +2,7 @@ import { getWorksFromServer } from "../worksFilter.js";
 import { Modal } from "./class-modal.js";
 import { getUserDataFromCookies } from "../auth/auth.js";
 import { host } from "../config.js";
-import { modalAddWork, dragAndDrop, checkInputs } from "./modal-addWork2.js";
+import { modalAddWork, dragAndDrop, checkInputs } from "./modal-addWork.js";
 
 /**
  * Supprime le travail selon l'id
