@@ -39,4 +39,7 @@
     width: 180px;
     text-align: center;
     border-radius: 60px;
+    &[disabled]{
+      background-color: var.$grey-1;
+    }
 }

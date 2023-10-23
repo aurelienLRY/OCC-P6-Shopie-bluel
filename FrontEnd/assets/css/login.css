@@ -189,6 +189,9 @@ footer nav ul {
   text-align: center;
   border-radius: 60px;
 }
+.btn-lg[disabled] {
+  background-color: #A7A7A7;
+}
 
 #login {
   width: 50%;

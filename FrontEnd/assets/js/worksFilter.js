@@ -10,18 +10,18 @@ async function fetchData(url) {
 
 // Récupère les travaux depuis l'API
  export async function getWorksFromServer() {
-  return fetchData(host+"/api/works");
+  return await fetchData(host+"/api/works");
 }
 
 // Récupère les catégories depuis l'API
-async function getCategoriesFromServer() {
-  return fetchData(host+"/api/categories");
+export async function getCategoriesFromServer() {
+  return await fetchData(`${host}/api/categories`);
 }
 
 /**
  * Fonction pour générer les éléments du DOM pour les travaux en fonction de la catégorie sélectionnée.
- * @param {selectDocu} selectDocu élément du DOM dans lequel on cherche le sélecteur
- * @param {selecteur}  selecteur sélecteur dans lequel on va insérer les travaux
+ * @param {string} selectDocu élément du DOM dans lequel on cherche le sélecteur
+ * @param {string}  selecteur sélecteur dans lequel on va insérer les travaux
  */
 export async function addWorksToDom(selectDocu, selecteur){
   const gallery = selectDocu.querySelector(selecteur);

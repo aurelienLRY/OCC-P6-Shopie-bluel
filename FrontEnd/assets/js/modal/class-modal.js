@@ -16,7 +16,6 @@ export class Modal {
     this.modal.setAttribute("aria-hidden", "true");
     this.modal.setAttribute("role", "dialog");
     this.modal.setAttribute("aria-labelledby", "titlemodal");
-    //this.modal.style.display = "block";
 
     const modalWrapper = document.createElement("div");
     modalWrapper.classList.add("modal-wrapper");
@@ -28,10 +27,6 @@ export class Modal {
     const modalNav = document.createElement("div");
     modalNav.classList.add("modal-wrapper_nav");
 
-    /*const previewIcon = document.createElement("a");
-    previewIcon.setAttribute("id", "preview");
-    previewIcon.classList.add("js-modal-preview");
-    previewIcon.innerHTML = '<i class="fa-solid fa-arrow-left-long"></i>';*/
 
     const closeIcon = document.createElement("a");
     closeIcon.setAttribute("id", "close");
@@ -56,6 +51,7 @@ export class Modal {
     modalFooter.classList.add("modal-wrapper_footer");
 
     const addButton = document.createElement("button");
+    addButton.classList.add('btn-lg')
     addButton.textContent = "object.btn.textContent";
 
     modalFooter.appendChild(addButton);
@@ -76,7 +72,9 @@ export class Modal {
         this.closeModal();
       }
     });
-    closeIcon.addEventListener("click", () => {
+    closeIcon.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
       this.closeModal();
     });
   //FIN DU CONSTRUCTOR
@@ -107,6 +105,14 @@ export class Modal {
     previewIcon.innerHTML = '<i class="fa-solid fa-arrow-left-long"></i>';
     nav.insertBefore(previewIcon , nav.firstChild);
     return this.modal.querySelector(".js-modal-preview");
+  }
+
+  get divErreur() {
+    const body = this.modal.querySelector(".modal-wrapper_body");
+    const divErr = document.createElement("div");
+    divErr.id = 'messErr'
+    body.appendChild(divErr);
+    return this.modal.querySelector("#messErr");
   }
 
   // Fonction pour fermer la modal

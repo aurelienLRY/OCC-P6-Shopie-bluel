@@ -1,4 +1,9 @@
 @use "btn";
+@use "../abstracts/variables" as v;
+
+$bg-dragAndDrop : #E8F1F6;
+$text-btn_dragAndDrop :#306685;
+
 
 .modal {
   //comportement
@@ -18,6 +23,10 @@
   &-wrapper {
     max-width: 630px;
     max-height: 688px;
+    width: 100%;
+    height: 100%;
+    min-width: 315px;
+    min-height: 344px;
     background-color: white;
     border-radius: 10px;
     display: flex;
@@ -39,7 +48,7 @@
       justify-content: flex-end;
       align-items: center;
       font-size: 24px;
-      &--space-between{
+      &--space-between {
         justify-content: space-between;
       }
     }
@@ -56,53 +65,144 @@
       padding-left: 80px;
       padding-right: 80px;
     }
-    .gallery {
-      width: 100%;
-      display : grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-column-gap: 8px;
-      grid-row-gap: 8px;
 
-      &_figure {
-        position: relative;
-
-        img {
-          width: 100%;
-          object-fit: cover;
-        }
-        i {
-          width: 17px;
-          height:17px;
-          font-size: 9px;
-          position: absolute;
-          top: 6px;
-          right: 5px;
-          color: white;
-          background-color: black;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 2px;
-        }
-      }
+    #messErr{
+      color : v.$danger-color;
+      text-align : center;
+      font-weight: 700;
     }
+
     &_footer {
       margin-left: 15%;
       margin-right: 15%;
-         border-top: 1px solid #B3B3B3;
+      border-top: 1px solid #b3b3b3;
       display: flex;
       justify-content: center;
       align-items: center;
 
-
       button {
-     box-sizing: border-box;
-        @extend .btn-lg;
+        appearance: none;
+        border: none;
+        box-sizing: border-box;
         padding: 0.5em 1.5em 0.5em 1.5em;
-        text-align: center;
+        width: auto;
       }
     }
   }
 }
-@keyframes modal {
+
+#modal-galeriePhoto {
+  .gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+
+    &_figure {
+      position: relative;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+      i {
+        width: 17px;
+        height: 17px;
+        font-size: 9px;
+        position: absolute;
+        top: 6px;
+        right: 5px;
+        color: white;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+#modal-addwork {
+  .addWork_body {
+    flex-direction: column;
+    gap: 30px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+      //style
+      color: v.$text-color;
+      font-weight: 500;
+    }
+    .dragandDrop {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2em;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 169px;
+      max-height: 220px;
+      border-radius: 3px;
+      padding: 1em 0 1em 0;
+      overflow: hidden;
+
+      background-color:$bg-dragAndDrop;
+      i {
+        color: #b9c5cc;
+        font-size: 76px;
+        margin-bottom: 0.2em;
+      }
+      img {
+        box-sizing: border-box;
+
+        width: min-content;
+        height: 100%;
+        width: auto;
+        object-fit: scale-down;
+      }
+    }
+    .btn_fileType {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: $text-btn_dragAndDrop;
+      text-align: center;
+      font-weight: 500;
+      border-radius: 50px;
+      background: #cbd6dc;
+
+      width: 173px;
+      height: 36px;
+    }
+
+    input,
+    select {
+      outline: none;
+      border: none;
+      padding: 0;
+      width: 100%;
+      height: 51px;
+      background: #fff;
+      box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    }
+
+    #divErr {
+      color: v.$danger-color;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 500;
+
+    }
+    span {
+      color: #444;
+      text-align: center;
+      font-size: 10px;
+    }
+  }
 }

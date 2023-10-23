@@ -180,7 +180,7 @@ footer nav ul {
   background: #1d6154;
 }
 
-.btn-lg, .modal-wrapper_footer button {
+.btn-lg {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -189,6 +189,9 @@ footer nav ul {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+.btn-lg[disabled] {
+  background-color: #A7A7A7;
 }
 
 .modal {
@@ -205,6 +208,10 @@ footer nav ul {
 .modal-wrapper {
   max-width: 630px;
   max-height: 688px;
+  width: 100%;
+  height: 100%;
+  min-width: 315px;
+  min-height: 344px;
   background-color: white;
   border-radius: 10px;
   display: flex;
@@ -240,21 +247,42 @@ footer nav ul {
   padding-left: 80px;
   padding-right: 80px;
 }
-.modal-wrapper .gallery {
+.modal-wrapper #messErr {
+  color: #d54242;
+  text-align: center;
+  font-weight: 700;
+}
+.modal-wrapper_footer {
+  margin-left: 15%;
+  margin-right: 15%;
+  border-top: 1px solid #b3b3b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-wrapper_footer button {
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  width: auto;
+}
+
+#modal-galeriePhoto .gallery {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 }
-.modal-wrapper .gallery_figure {
+#modal-galeriePhoto .gallery_figure {
   position: relative;
 }
-.modal-wrapper .gallery_figure img {
+#modal-galeriePhoto .gallery_figure img {
   width: 100%;
   object-fit: cover;
 }
-.modal-wrapper .gallery_figure i {
+#modal-galeriePhoto .gallery_figure i {
   width: 17px;
   height: 17px;
   font-size: 9px;
@@ -268,21 +296,79 @@ footer nav ul {
   justify-content: center;
   border-radius: 2px;
 }
-.modal-wrapper_footer {
-  margin-left: 15%;
-  margin-right: 15%;
-  border-top: 1px solid #B3B3B3;
+
+#modal-addwork .addWork_body {
+  flex-direction: column;
+  gap: 30px;
+}
+#modal-addwork .addWork_body .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  color: #3D3D3D;
+  font-weight: 500;
+}
+#modal-addwork .addWork_body .dragandDrop {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 169px;
+  max-height: 220px;
+  border-radius: 3px;
+  padding: 1em 0 1em 0;
+  overflow: hidden;
+  background-color: #E8F1F6;
+}
+#modal-addwork .addWork_body .dragandDrop i {
+  color: #b9c5cc;
+  font-size: 76px;
+  margin-bottom: 0.2em;
+}
+#modal-addwork .addWork_body .dragandDrop img {
+  box-sizing: border-box;
+  width: min-content;
+  height: 100%;
+  width: auto;
+  object-fit: scale-down;
+}
+#modal-addwork .addWork_body .btn_fileType {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.modal-wrapper_footer button {
-  box-sizing: border-box;
-  padding: 0.5em 1.5em 0.5em 1.5em;
+  color: #306685;
   text-align: center;
+  font-weight: 500;
+  border-radius: 50px;
+  background: #cbd6dc;
+  width: 173px;
+  height: 36px;
+}
+#modal-addwork .addWork_body input,
+#modal-addwork .addWork_body select {
+  outline: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 51px;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+#modal-addwork .addWork_body #divErr {
+  color: #d54242;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+}
+#modal-addwork .addWork_body span {
+  color: #444;
+  text-align: center;
+  font-size: 10px;
 }
 
-@keyframes modal {}
 .edit_mode {
   width: 100%;
   height: 59px;
