@@ -48,3 +48,6 @@ L’évaluateur jouera le rôle de Charlotte, la cheffe de projet. Il vous chall
 - l'envoie de nouvelles images à l'API. 
 ### Debrief (5 minutes)
 À la fin de la soutenance, l'évaluateur arrêtera de jouer le rôle de Charlotte pour vous permettre de débriefer ensemble.
+
+## Évaluation
+![p6](https://github.com/aurelienLRY/OCC-P6-Shopie-bluel/assets/83220559/7ab90dec-9239-4537-84ef-4b529d58505a)
